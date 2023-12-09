@@ -14,13 +14,6 @@ const MongoStore = require("connect-mongo");
 // console.log(process.env.FRONT_END_URL);
 
 app.use(
-  cors({
-    credentials: true,
-    origin: process.env.FRONT_END_URL,
-  })
-);
-
-app.use(
   session({
     name: "formify",
     secret: process.env.SESSION_SECRET,
@@ -42,6 +35,12 @@ app.use(
         console.log(err || "connect-mongoDB setup");
       }
     ),
+  })
+);
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.FRONT_END_URL,
   })
 );
 
