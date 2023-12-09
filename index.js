@@ -12,19 +12,17 @@ app.use(express.json());
 const MongoStore = require("connect-mongo");
 
 // console.log(process.env.FRONT_END_URL);
-
+app.set("trust proxy", 1);
 app.use(
   session({
     name: "formify",
     secret: process.env.SESSION_SECRET,
     saveUninitialized: true,
-    // saveUninitialized: false,
-    // resave: false,
-    resave: true,
+    resave: false,
     cookie: {
       sameSite: "none", //allow cross-site requests from different origin
       secure: true,
-      maxAge: 1000 * 60 * 100 * 600,
+      maxAge: 1000 * 60,
     },
     store: MongoStore.create(
       {
@@ -51,8 +49,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
-
-app.use("/uploads", express.static(__dirname + "/uploads"));
 
 // using express Routes
 app.use("/api", require("./routes"));

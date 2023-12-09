@@ -16,8 +16,8 @@ passport.use(
     async function (accessToken, refreshToken, profile, cb) {
       try {
         mongoose.connect(process.env.MONGODB_URI);
-
         const user = await User.findOne({ googleId: profile.id });
+        console.log(user);
         if (!user) {
           const newUser = new User({
             name: profile.displayName,
@@ -28,7 +28,7 @@ passport.use(
           await newUser.save();
           cb(null, newUser);
         }
-        return cb(null, user);
+        cb(null, user);
       } catch (error) {
         return cb(err, null);
       }
@@ -55,7 +55,7 @@ passport.checkAuthentication = function (req, res, next) {
     return next();
   }
   // if the user is not sign in to the page
-  return res.redirect("/profile");
+  return res.redirect("/api/profile");
 };
 
 passport.setAuthenticatedUser = function (req, res, next) {

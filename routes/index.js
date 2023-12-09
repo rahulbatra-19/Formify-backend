@@ -7,7 +7,8 @@ const photosMiddleware = multer({ dest: "/tmp" });
 
 router.get("/profile", (req, res) => {
   try {
-    if (req.isAuthenticated()) {
+    console.log(req.isAuthenticated());
+    if (req.user) {
       res.json(req.user);
     } else {
       return res.status(500).json({ error: "Error in fetching user" });
