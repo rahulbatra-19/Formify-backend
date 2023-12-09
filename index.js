@@ -29,8 +29,8 @@ app.use(
     // resave: false,
     resave: true,
     cookie: {
-      // sameSite: "none", //allow cross-site requests from different origin
-      // secure: true,
+      sameSite: "none", //allow cross-site requests from different origin
+      secure: true,
       maxAge: 1000 * 60 * 100 * 600,
     },
     store: MongoStore.create(
