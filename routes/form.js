@@ -5,7 +5,6 @@ const passport = require("passport");
 
 router.post("/create", passport.checkAuthentication, formController.create);
 router.get("/:id", passport.checkAuthentication, formController.getFormbyId);
-// router.put("/:id", passport.checkAuthentication, formController.editFormbyId);
 router.post("/submit/:id", passport.checkAuthentication, formController.submit);
 router.get(
   "/get/all",

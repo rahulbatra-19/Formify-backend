@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const fs = require("fs");
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
 const bucket = "rahul-formbuilder-app";
+
 async function uploadToS3(path, originalFilename, mimetype) {
   const client = new S3Client({
     region: "us-east-1",
@@ -27,8 +28,6 @@ async function uploadToS3(path, originalFilename, mimetype) {
 }
 
 module.exports.upload = async function (req, res) {
-   mongoose.connect(process.env.MONGODB_URI);
-
   try {
     const { path, originalname, mimetype } = req.file;
     const url = await uploadToS3(path, originalname, mimetype);

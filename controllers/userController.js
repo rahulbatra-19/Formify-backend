@@ -4,8 +4,6 @@ const Form = require("../models/Form");
 const Result = require("../models/Result");
 
 module.exports.getForms = async function (req, res) {
-  mongoose.connect(process.env.MONGODB_URI);
-
   try {
     const formsbuilt = await Form.find({ owner: req.user._id });
     const result = await Result.find({ user: req.user._id }).populate({

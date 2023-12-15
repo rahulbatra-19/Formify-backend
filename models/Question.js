@@ -14,7 +14,7 @@ const QuesSchema = new mongoose.Schema({
   image: String,
   question: String,
   type: {
-    type: String, // Type of question ('Comprehension', 'Cloze', 'Categorize', etc.)
+    type: String, 
     enum: ["Comprehension", "Cloze", "Categorize"], // Define possible question types
   },
   clozeOptions: [String],

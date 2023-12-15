@@ -4,8 +4,6 @@ const Form = require("../models/Form");
 const Question = require("../models/Question");
 
 module.exports.create = async function (req, res) {
-   mongoose.connect(process.env.MONGODB_URI);
-
   try {
     const questions = req.body;
     let ques = await Question.create(questions);
@@ -15,8 +13,6 @@ module.exports.create = async function (req, res) {
   }
 };
 module.exports.editOrCreateQuestions = async function (req, res) {
-   mongoose.connect(process.env.MONGODB_URI);
-
   try {
     const questions = req.body;
 

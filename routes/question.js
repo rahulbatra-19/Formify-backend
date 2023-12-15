@@ -9,6 +9,5 @@ router.post(
   passport.checkAuthentication,
   questionController.editOrCreateQuestions
 );
-// router.get("/:id", passport.checkAuthentication, formController.getFormbyId);
 
 module.exports = router;

@@ -7,7 +7,6 @@ const photosMiddleware = multer({ dest: "/tmp" });
 
 router.get("/profile", (req, res) => {
   try {
-    console.log(req.isAuthenticated());
     if (req.user) {
       res.json(req.user);
     } else {
@@ -17,6 +16,7 @@ router.get("/profile", (req, res) => {
     console.error("error", err);
   }
 });
+
 router.post(
   "/upload",
   passport.checkAuthentication,

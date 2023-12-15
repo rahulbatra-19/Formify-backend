@@ -4,8 +4,6 @@ const Form = require("../models/Form");
 const Result = require("../models/Result");
 
 module.exports.create = async function (req, res) {
-   mongoose.connect(process.env.MONGODB_URI);
-
   try {
     let form = await Form.create({
       title: req.body.formname,
@@ -27,15 +25,13 @@ module.exports.create = async function (req, res) {
 };
 
 module.exports.getFormbyId = async function (req, res) {
-   mongoose.connect(process.env.MONGODB_URI);
-
   try {
     const { id } = req.params;
     const form = await Form.findById(id).populate({
-      path: "questions", 
-      model: "Questions", 
+      path: "questions",
+      model: "Questions",
       populate: {
-        path: "ComprehensionSubQuestions", 
+        path: "ComprehensionSubQuestions",
         model: "Questions",
       },
     });
@@ -46,8 +42,6 @@ module.exports.getFormbyId = async function (req, res) {
 };
 
 module.exports.submit = async function (req, res) {
-   mongoose.connect(process.env.MONGODB_URI);
-
   try {
     const { id } = req.params;
     const result = await Result.create({
@@ -82,14 +76,12 @@ module.exports.submit = async function (req, res) {
 };
 
 module.exports.getAllForms = async function (req, res) {
-   mongoose.connect(process.env.MONGODB_URI);
-
   try {
     const forms = await Form.find().populate({
-      path: "questions", 
-      model: "Questions", 
+      path: "questions",
+      model: "Questions",
       populate: {
-        path: "ComprehensionSubQuestions", 
+        path: "ComprehensionSubQuestions",
         model: "Questions",
       },
     });
